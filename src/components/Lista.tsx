@@ -5,23 +5,22 @@ import { Todo } from "./"
 
 export const Lista = () => {
 
-    const loading = useSelector((state: any) => state.todoSlice.loading)
-    const array = useSelector((state: any) => state.todoSlice.todos)
+    const state = useSelector((state: any) => state.todoSlice)
 	return (
         <>
             {
-                loading ?
+                state.loading ?
                 <h1>Cargando...</h1>
                 :
-                <ul>
+                <>
                     {
-                        array.map( (todo: todosArrayParams, key: Key) => {
+                        state.todos.map( (todoObject: todosArrayParams, key: Key) => {
                             return (
-                                <Todo key={key} id={todo.id} />
+                                <Todo key={key} obj={{...todoObject}} />
                             )
                         })
                     }
-                </ul>
+                </>
             }
         </>
 	)

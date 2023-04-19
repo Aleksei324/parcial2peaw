@@ -10,10 +10,7 @@ export const thunksApi = (dispatch: Dispatch<AnyAction>) => {
         const resp = await fetch(url)
         const data = await resp.json()
 
-        console.log(data)
-
         if (data !== undefined) {
-            console.log(data)
             dispatch(completedApi(data))
         }
         else {

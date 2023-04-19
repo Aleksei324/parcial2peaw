@@ -16,8 +16,8 @@ function App() {
     <div className="App">
       <h1>Parcial 2: Programación en ambiente web</h1>
       <h2>Todo app por Camilo Franco Moya</h2>
-      <Lista />
       <AddZone />
+      <Lista />
     </div>
   )
 }
