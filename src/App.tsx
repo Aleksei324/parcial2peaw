@@ -1,16 +1,23 @@
-import { Provider } from "react-redux"
-import { reduxStore } from './store/store'
+import { useDispatch } from "react-redux"
+import { useEffect } from "react"
+
 import { AddZone, Lista } from './components'
+import { thunksApi } from './store/thunks/thunksApi'
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    thunksApi(dispatch)
+  },[])
+
   return (
     <div className="App">
-      <Provider store={reduxStore}>
-        <h1>Parcial 2: Programación en ambiente web</h1>
-        <h2>Todo app por Camilo Franco Moya</h2>
-        <Lista />
-        <AddZone />
-      </Provider>
+      <h1>Parcial 2: Programación en ambiente web</h1>
+      <h2>Todo app por Camilo Franco Moya</h2>
+      <Lista />
+      <AddZone />
     </div>
   )
 }

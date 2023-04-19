@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
+import { completion, deletion } from "../store/slices/todoSlice"
 
 interface todoProps {
     id: number
@@ -6,14 +7,21 @@ interface todoProps {
 
 export const Todo = ({id}: todoProps) => {
     
-    const reduxState = useSelector((state: any) => state.todoSlice.value)
+    const todo = useSelector((state: any) => state.todoSlice.todos[id])
     const dispatch = useDispatch()
 	return (
-		<li>
-            Tarea #{reduxState[id].id} <br/>
-            {reduxState[id].title} <br/>
-            Creado por el usuario #{reduxState[id].userId} <br/>
-            <button>Borrar</button>
+		<li onClick={()=>dispatch(completion(id))}>
+            Tarea #{todo.id} <br/>
+            {todo.title} <br/>
+            Creado por el usuario #{todo.userId} <br/>
+            {
+                todo.completed ?
+                <>Se encuentra completado</>
+                :
+                <>Falta por completar</>
+            }
+            <br/>
+            <button onClick={()=>dispatch(deletion(id))}>Borrar</button>
         </li>
 	)
 }
